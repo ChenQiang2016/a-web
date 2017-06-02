@@ -10,7 +10,7 @@ public class OSSClientTest {
 
 	public static void main(String[] args) throws Exception {
 
-		// endpoint以杭州为例，其它region请按实际情况填写
+		// endpoint以杭州为例，其它region请按实际情况填写************************
 		String endpoint = "http://oss-cn-qingdao.aliyuncs.com";
 		// accessKey请登录https://ak-console.aliyun.com/#/查看
 		String accessKeyId = "dA2poxeQFvSergfR";
