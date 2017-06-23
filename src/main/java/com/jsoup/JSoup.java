@@ -1,7 +1,11 @@
 package com.jsoup;
 
 
+import java.io.IOException;
+
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
+import org.jsoup.helper.HttpConnection;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -11,7 +15,26 @@ import com.spider.HttpClient;
 
 public class JSoup {
 
-	
+	public static String httpGetString(String url) {
+		Document doc = httpGetDocument(url);
+		return doc == null ? "" : doc.html();
+	}
+
+	public static Document httpGetDocument(String url) {
+		Document doc = null;
+		Connection connect = HttpConnection.connect(url);
+		connect.timeout(3000);
+		connect.header("Accept-Encoding", "gzip,deflate,sdch");
+		connect.header("Connection", "close");
+		connect.validateTLSCertificates(false);
+		try {
+			connect.execute();
+			doc = connect.get();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return doc;
+	}
 	
 	@Test
 	public void testHtml(){
